@@ -1,0 +1,191 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply w-screen h-screen p-0 m-0 font-mono text-sm;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    line-height: initial;
+}
+
+/*---navbar---*/
+.trigger {
+    @apply pl-4 pr-4 cursor-pointer;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+}
+
+.trigger:hover {
+    @apply bg-gray-3;
+}
+
+.breadcrumb {
+    @apply pl-1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header {
+    @apply flex items-center justify-between p-0 bg-white shadow;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    z-index: 19;
+}
+
+.header-left {
+    @apply flex items-center;
+    height: 48px;
+    line-height: 48px;
+}
+
+.header-right {
+    @apply flex pl-3 pr-3 mr-4 cursor-pointer;
+    z-index: 999;
+}
+
+.header-right:hover {
+    @apply bg-gray-3;
+}
+
+/*---Sidebar---*/
+.logo {
+    @apply flex items-center justify-between text-center align-middle;
+    height: 64px;
+    line-height: 64px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-size: 18px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    transition: .5s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logo img {
+    height: 32px;
+}
+
+.content {
+    @apply p-6 mt-6 mb-6 ml-4 mr-4 bg-white;
+    min-height: 93%;
+    overflow: auto;
+}
+
+.tabs-view-container {
+    height: 32px;
+    line-height: 32px;
+    margin-top: 1px;
+    background-color: #fff;
+}
+
+.ant-tabs-nav-wrap {
+    margin: 0;
+    padding: 0;
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    margin: 0 14px;
+    display: flex;
+    align-items: center;
+}
+
+.ant-tabs {
+    overflow: inherit;
+}
+
+.ant-tabs-tab {
+    display: flex;
+    align-items: center;
+    height: calc(32px - 4px) !important;
+    line-height: calc(32px - 4px) !important;
+    font-size: 12px !important;
+    border: 1px solid #d9d9d9 !important;
+    transition: none !important;
+}
+
+.ant-tabs-tab-active {
+    @apply bg-blue-6 !important;
+    color: #fff !important;
+    transition: none !important;
+    border: none !important;
+}
+
+.ant-tabs-tab-remove {
+    display: flex;
+    align-items: center;
+    height: calc(30px - 2px);
+    line-height: calc(30px - 2px);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #fff;
+}
+
+.ant-tabs-tab-active .anticon-close {
+    color: #fff;
+}
+
+.ant-tabs-ink-bar {
+    display: none;
+}
+
+.ant-tabs-nav {
+    margin: 0 !important;
+}
+
+.ant-tabs-nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    @apply w-screen h-screen;
+    @apply flex flex-col items-center justify-center;
+    @apply bg-no-repeat bg-cover;
+    background-image: url("../assets/img/login-bg.jpg");
+}
+
+.site-form-item-icon {
+    color: rgb(0 0 0 / 25%);
+}
+
+.ant-message {
+    top: 40%;
+}
+
+.ant-message-custom-content {
+    display: flex;
+    align-items: center;
+}
+
+.ant-tree .ant-tree-node-content-wrapper {
+    display: flex;
+}
+
+.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
+    display: flex;
+    align-items: center;
+}
