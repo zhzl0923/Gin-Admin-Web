@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import Logo from "./Logo";
-import Menu from "./Menu";
+import { MenuContainer as Menu } from "@/containers/Menu";
 import PropTypes from "prop-types";
 
 const { Sider } = Layout;

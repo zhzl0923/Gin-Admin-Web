@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Menu as AntdMenu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import Icon from "@/components/Icon";
-import store from "@/redux";
+import PropTypes from "prop-types";
 
 const { SubMenu } = AntdMenu;
-const Menu = () => {
+const Menu = ({ Routers }) => {
   const location = useLocation();
   const defaultSelectedKeys = [location.pathname.substr(1)];
   const defaultOpenKeys = [
@@ -23,7 +23,7 @@ const Menu = () => {
   const onMenuClick = (item) => {
     setOpenKeys(item.keyPath.filter((v) => v));
   };
-  const { Routers } = store.getState();
+
   return (
     <AntdMenu
       theme="dark"
@@ -63,6 +63,19 @@ const Menu = () => {
       })}
     </AntdMenu>
   );
+};
+
+Menu.prototype = {
+  Routers: PropTypes.arrayOf(
+    PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      component: PropTypes.func,
+      title: PropTypes.string.isRequired,
+      exact: PropTypes.bool.isRequired,
+      meta: PropTypes.shape({ icon: PropTypes.string }),
+      routes: PropTypes.array,
+    })
+  ).isRequired,
 };
 
 export default Menu;

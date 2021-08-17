@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, Table, Space, Button, message } from "antd";
 import { getAdminMenuList, deleteAdminMenuById } from "@/api/admin_menu";
 import Columns from "./Columns";
@@ -26,17 +26,16 @@ const AdminMenu = () => {
   const showModal = () => {
     setCreateVisible(true);
   };
-  const getMenuList = (page = 1, pageSize = 10) => {
+  const getMenuList = () => {
     getAdminMenuList().then((res) => {
       handleMenuList(res);
       setData(res);
     });
   };
-  const getList = useCallback(getMenuList, [setData]);
 
   useEffect(() => {
-    getList();
-  }, [getList]);
+    getMenuList();
+  }, []);
 
   const finish = () => {
     getMenuList();
@@ -62,7 +61,7 @@ const AdminMenu = () => {
         <Permission permission="setting.menu.add">
           <Col span={24}>
             <Space className="w-full" align="end">
-              <Permission permission="setting.menu.btn.add">
+              <Permission permission="setting.menu.add">
                 <Button type="primary" onClick={showModal}>
                   新增
                 </Button>

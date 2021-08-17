@@ -1,8 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Routes from "@/routes";
-import store from "@/redux";
-import { geneRouter } from "@/utils/router";
 
 const creatRouter = (routes) => {
   const Routers = [];
@@ -33,14 +31,12 @@ const creatRouter = (routes) => {
   return Routers;
 };
 
-const RouteView = () => {
-  const { Menus } = store.getState();
-
-  const Routers = creatRouter([...Routes, ...geneRouter(Menus)]);
+const RouteView = ({ Routers }) => {
+  const Router = creatRouter([...Routes, ...Routers]);
   return (
     <Suspense fallback={false}>
       <Switch>
-        {Routers.map((router) => {
+        {Router.map((router) => {
           return router;
         })}
       </Switch>

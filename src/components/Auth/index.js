@@ -1,9 +1,20 @@
 import { useEffect, useCallback } from "react";
 import { getAdminUserByToken } from "@/api/admin_user";
 import { useHistory } from "react-router";
+import { getAdminMenuByUserId } from "@/api/admin_menu";
+import { geneRouter } from "@/utils/router";
+import { genePermission } from "@/utils/permissions";
 import PropTypes from "prop-types";
 
-const Auth = ({ user, updUserInfo, updToken, children }) => {
+const Auth = ({
+  user,
+  updUserInfo,
+  updToken,
+  setUserMenus,
+  setUserPermissions,
+  setUserRouters,
+  children,
+}) => {
   const history = useHistory();
   const setUser = useCallback(() => {
     if (!user.token) {
@@ -25,8 +36,22 @@ const Auth = ({ user, updUserInfo, updToken, children }) => {
           updToken("");
           history.push("/login");
         });
+      getAdminMenuByUserId().then((menus) => {
+        setUserMenus(menus);
+        setUserPermissions(genePermission(menus));
+        setUserRouters(geneRouter(menus));
+      });
     }
-  }, [user, updToken, updUserInfo, history]);
+  }, [
+    user.token,
+    user.userID,
+    updToken,
+    history,
+    updUserInfo,
+    setUserMenus,
+    setUserPermissions,
+    setUserRouters,
+  ]);
 
   useEffect(() => {
     setUser();
@@ -41,6 +66,9 @@ Auth.prototype = {
   }),
   updUserInfo: PropTypes.func.isRequired,
   updToken: PropTypes.func.isRequired,
+  setUserMenus: PropTypes.func.isRequired,
+  setUserPermissions: PropTypes.func.isRequired,
+  setUserRouters: PropTypes.func.isRequired,
 };
 
 export default Auth;
